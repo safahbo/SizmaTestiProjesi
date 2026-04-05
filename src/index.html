@@ -1,1 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Safa H. - IDOR Lab</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 50px; background: #1a1a2e; color: white; display: flex; justify-content: center; }
+        .card { background: #16213e; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); width: 100%; max-width: 450px; border: 1px solid #0f3460; }
+        h2 { color: #e94560; margin-top: 0; }
+        input { padding: 10px; border-radius: 4px; border: 1px solid #0f3460; background: #0f3460; color: white; width: 80px; font-size: 16px; }
+        button { background: #e94560; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #ff4d6d; }
+        #result { margin-top: 20px; padding: 15px; background: #0f3460; border-radius: 6px; min-height: 50px; border-left: 4px solid #e94560; }
+        .info { color: #888; font-size: 0.9em; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Fatura Sorgulama</h2>
+        <p class="info">Sisteme <strong>Safa (ID: 100)</strong> olarak giriş yapıldı.</p>
+        
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <span>Fatura ID:</span>
+            <input type="number" id="invoiceId" value="100">
+            <button onclick="getInvoice()">Sorgula</button>
+        </div>
 
+        <div id="result">Sonuçları görmek için sorgulama yapın.</div>
+    </div>
+
+    <script>
+        function getInvoice() {
+            const id = document.getElementById('invoiceId').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = "Yükleniyor...";
+            
+            fetch(`/api/invoice/${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.error) {
+                        resultDiv.innerHTML = `<p style="color:#e94560">❌ Hata: ${data.error}</p>`;
+                    } else {
+                        resultDiv.innerHTML = `
+                            <p><strong>👤 Sahibi:</strong> ${data.owner}</p>
+                            <p><strong>💰 Tutar:</strong> ${data.amount}</p>
+                            <p><strong>📝 Detay:</strong> ${data.detail}</p>
+                            <p><strong>📅 Tarih:</strong> ${data.date}</p>
+                        `;
+                    }
+                })
+                .catch(err => {
+                    resultDiv.innerHTML = `<p style="color:red">Sunucuya bağlanılamadı!</p>`;
+                });
+        }
+    </script>
+</body>
+</html>
