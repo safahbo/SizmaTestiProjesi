@@ -1,6 +1,6 @@
 # IDOR Zafiyeti Giderme Rehberi (Mitigation)
 
-Bu rapor, İstinye Üniversitesi Bilişim Güvenliği Bölümü bünyesinde, Eğitmen Keyvan Arasteh yönetimindeki "Sızma Testi Operasyonları" dersi kapsamında hazırlanan çözüm planıdır.
+Bu rapor, İstinye Üniversitesi Bilişim Güvenliği Bölümü bünyesinde, Eğitmen Keyvan Arasteh yönetimindeki "Sızma Testi" dersi kapsamında hazırlanan çözüm planıdır.
 
 ## 1. Nesne Seviyesinde Yetkilendirme Kontrolü
 En etkili çözüm, kullanıcının veritabanındaki her bir nesne (fatura, profil vb.) üzerindeki haklarını her istekte sorgulamaktır.
