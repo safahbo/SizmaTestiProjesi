@@ -1,11 +1,20 @@
 {
-  "name": "idor-zafiyet-analizi",
+  "name": "istinye-idor-lab",
   "version": "1.0.0",
-  "description": "Sızma Testi Dersi IDOR Projesi",
+  "description": "IDOR Vulnerability Analysis Laboratory - Istinye University",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "security",
+    "idor",
+    "vulnerability",
+    "istinye"
+  ],
+  "author": "Safa Hacıbayramoğlu",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.18.2"
   }
