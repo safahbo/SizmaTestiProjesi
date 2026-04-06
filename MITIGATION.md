@@ -1,14 +1,23 @@
-# IDOR Zafiyeti Giderme Rehberi (Mitigation Guide)
+# IDOR Zafiyeti Giderme Rehberi (Mitigation)
 
-Bu doküman, projede tespit edilen **IDOR (Insecure Direct Object Reference)** zafiyetinin teknik analizini ve bu zafiyetin nasıl önleneceğine dair güvenli kodlama standartlarını içerir.
+Bu rapor, İstinye Üniversitesi Bilişim Güvenliği Bölümü bünyesinde, Eğitmen Keyvan Arasteh yönetimindeki "Sızma Testi Operasyonları" dersi kapsamında hazırlanan çözüm planıdır.
 
-## 1. Zafiyet Analizi (Hatalı Kod)
-Mevcut `server.js` dosyasında, kullanıcıdan alınan `id` parametresi doğrudan işlenmekte ve herhangi bir yetki kontrolü (Authorization) yapılmamaktadır:
+## 1. Nesne Seviyesinde Yetkilendirme Kontrolü
+En etkili çözüm, kullanıcının veritabanındaki her bir nesne (fatura, profil vb.) üzerindeki haklarını her istekte sorgulamaktır.
 
 ```javascript
-// HATALI YAKLAŞIM
+// GÜVENLİ KOD ÖRNEĞİ
 app.get('/api/invoice/:id', (req, res) => {
-    const id = req.params.id; 
-    const invoice = invoices[id]; // Sadece nesne ID'sine güveniliyor
-    res.json(invoice);
+    const requestedId = req.params.id;
+    const currentUserId = req.session.userId; // Oturumdaki kullanıcı kimliği
+
+    const invoice = invoices[requestedId];
+
+    // Kontrol: Veri var mı VE nesne sahibi oturum açan kullanıcı mı?
+    if (invoice && invoice.ownerId === currentUserId) {
+        res.json(invoice);
+    } else {
+        // Yetkisiz erişim girişimi: 403 Forbidden
+        res.status(403).json({ error: "Bu işleme yetkiniz bulunmamaktadır!" });
+    }
 });
