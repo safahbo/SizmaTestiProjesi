@@ -10,7 +10,7 @@
   <img src="https://upload.wikimedia.org/wikipedia/tr/b/b3/%C4%B0stinye_%C3%9Cniversitesi_Logosu.png" width="160"> <br>
   <strong>İstinye Üniversitesi</strong><br>
   Bilişim Güvenliği Teknolojisi Bölümü<br>
-  <strong>Ders:</strong> Sızma Testi Operasyonları<br>
+  <strong>Ders:</strong> Sızma Testi<br>
   <strong>Eğitmen:</strong> Keyvan Arasteh<br>
   <strong>Geliştiren:</strong> Safa Hacıbayramoğlu
 </p>
