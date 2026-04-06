@@ -7,7 +7,7 @@
 ![University](https://img.shields.io/badge/Üniversite-İstinye-blue)
 
 <p align="center">
-  <img src="istinye-logo.png" width="160"> <br>
+  <img src="istinye-logo.png.png" width="160"> <br>
   <strong>İstinye Üniversitesi</strong><br>
   Bilişim Güvenliği Teknolojisi Bölümü<br>
   <strong>Ders:</strong> Sızma Testi Operasyonları<br>
