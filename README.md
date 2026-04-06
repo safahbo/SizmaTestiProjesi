@@ -7,10 +7,10 @@
 ![University](https://img.shields.io/badge/Üniversite-İstinye-blue)
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/tr/b/b3/%C4%B0stinye_%C3%9Cniversitesi_Logosu.png" width="160"> <br>
+  <img src="istinye-logo.png" width="160"> <br>
   <strong>İstinye Üniversitesi</strong><br>
   Bilişim Güvenliği Teknolojisi Bölümü<br>
-  <strong>Ders:</strong> Sızma Testi<br>
+  <strong>Ders:</strong> Sızma Testi Operasyonları<br>
   <strong>Eğitmen:</strong> Keyvan Arasteh<br>
   <strong>Geliştiren:</strong> Safa Hacıbayramoğlu
 </p>
@@ -23,7 +23,6 @@
 3. [Teknik Derinlik ve Mimari](#-teknik-derinlik-ve-mimari)
 4. [Test ve Doğrulama](#-test-ve-doğrulama)
 5. [Kurulum ve Çalıştırma](#-kurulum-ve-çalıştırma)
-6. [Lisans](#-lisans)
 
 ---
 
