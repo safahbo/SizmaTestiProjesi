@@ -1,48 +1,58 @@
+/**
+ * @file server.js
+ * @description IDOR Lab Environment - Istinye University
+ * @instructor Keyvan Arasteh
+ * @author Safa Hacıbayramoğlu
+ * * SECURITY ADVISORY:
+ * - Vulnerability: IDOR (Insecure Direct Object Reference)
+ * - CWE Category: CWE-639 (Access Control Bypass)
+ * - Severity: High / Critical
+ */
+
 const express = require('express');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-/**
- * TODO: Gelecek versiyonlarda 'helmet.js' entegrasyonu ile HTTP güvenlik başlıkları sıkılaştırılacak.
- * FIXME: Statik dosya sunumu sırasında directory traversal saldırılarına karşı path validasyonu eklenmeli.
- */
+// TODO: Implement 'helmet.js' for enhanced HTTP security headers.
+// FIXME: Ensure directory traversal protection on static assets.
 app.use(express.static(__dirname));
 
-// Simüle edilmiş veritabanı (Zafiyetli Nesne Referansları)
+/**
+ * MOCK DATABASE - IN-MEMORY
+ * Simulates sensitive user invoice data.
+ */
 const invoices = {
     "100": { id: 100, owner: "Safa", amount: "1500 TL", detail: "Laptop Tamiri", date: "2026-03-01" },
     "101": { id: 101, owner: "Basak", amount: "450 TL", detail: "Internet Faturasi", date: "2026-03-05" },
     "102": { id: 102, owner: "Mehmet", amount: "2100 TL", detail: "Kira Odemesi", date: "2026-03-10" }
 };
 
-// Ana sayfa yönlendirmesi
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 /**
- * @api {get} /api/invoice/:id Fatura Verisini Getir
- * @apiDescription ZAFİYET NOKTASI: IDOR (Insecure Direct Object Reference). 
- * Sunucu tarafında 'Authentication' olsa dahi 'Authorization' (Yetkilendirme) eksiktir.
- * * TODO: UUID/GUID yapısına geçilerek ID tahmin edilebilirliği (Enumeration) engellenmeli.
+ * @api {get} /api/invoice/:id Fetch Invoice Data
+ * @apiDescription VULNERABILITY: Missing Authorization Check (IDOR).
+ * Any authenticated/unauthenticated user can access any ID by incrementing the parameter.
+ * * TODO: Use UUIDs instead of sequential integers to prevent enumeration.
  */
 app.get('/api/invoice/:id', (req, res) => {
     const id = req.params.id;
     const invoice = invoices[id];
 
     if (invoice) {
-        // FIXME: Gerçek bir uygulamada burada 'invoice.ownerId === req.session.userId' kontrolü yapılmalıdır!
-        // Şu anki haliyle her kullanıcı, sadece ID bilerek herkesin faturasına erişebilir.
+        // FIXME: SECURITY RISK - Application trust user input directly without session validation.
         res.json(invoice);
     } else {
         res.status(404).json({ error: "Fatura bulunamadı!" });
     }
 });
 
-// TODO: Loglama mekanizması (Winston/Morgan) eklenerek yetkisiz erişim denemeleri izlenmeli.
-// TODO: Rate limiting uygulanarak kaba kuvvet (brute-force) saldırıları yavaşlatılmalı.
+// TODO: Add logging middleware (e.g., Winston) to track unauthorized access attempts.
+// TODO: Integrate Express-Rate-Limit to mitigate automated ID scanning.
 
 app.listen(PORT, () => {
-    console.log(`[GÜVENLİ OLMAYAN MOD] Sunucu aktif: http://localhost:${PORT}`);
+    console.log(`[!] LAB ACTIVE: Vulnerable server running at http://localhost:${PORT}`);
 });
