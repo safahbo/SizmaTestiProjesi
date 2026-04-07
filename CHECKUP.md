@@ -19,17 +19,17 @@
 ## 📊 Executive Summary
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Total_Score-59%2F100-yellow?style=for-the-badge&logo=codecov" alt="Total Score"/>
+  <img src="https://img.shields.io/badge/Total_Score-61%2F100-yellow?style=for-the-badge&logo=codecov" alt="Total Score"/>
   <img src="https://img.shields.io/badge/Status-NEEDS_WORK-black?style=for-the-badge" alt="Status"/>
-  <img src="https://img.shields.io/badge/Technical_Depth-29-purple?style=for-the-badge" alt="Tech Depth"/>
+  <img src="https://img.shields.io/badge/Technical_Depth-35-purple?style=for-the-badge" alt="Tech Depth"/>
 </div>
 
 | Attribute           | Value                                 |
 | :------------------ | :------------------------------------ |
 | **Student**         | `Safa Hacıbayramoğlu` (`2420191014`) |
 | **Course**          | `penetration-testing`                       |
-| **Analyzed Commit** | `None`                |
-| **Timestamp**       | `4/6/2026, 11:25:50 PM`                  |
+| **Analyzed Commit** | `f3bb86a`                |
+| **Timestamp**       | `4/7/2026, 2:55:00 AM`                  |
 
 ---
 
@@ -39,24 +39,24 @@ The grading logic is built upon consistency, architecture mastery, and documenta
 
 ```mermaid
 pie title Grading Distribution Analysis (Earned vs Maximum Target)
-    "Technical Depth (25%)" : 7
+    "Technical Depth (25%)" : 9
     "Functional Testing (30%)" : 0
-    "Commit Activity (10%)" : 10
+    "Commit Activity (10%)" : 9
     "Code Quality (10%)" : 9
     "Documentation (10%)" : 10
-    "Repo Discipline (10%)" : 7
+    "Repo Discipline (10%)" : 8
     "Time Investment (5%)" : 2
 ```
 
 | Metric Area            |      Awarded       | Weight Max | Grading Logic Analogy                                                   |
 | :--------------------- | :----------------: | :--------: | :---------------------------------------------------------------------- |
-| **Technical Depth**    | `29`  |     25     | _(Röntgen Analizi)_ Deep structural / architectural execution.          |
+| **Technical Depth**    | `35`  |     25     | _(Röntgen Analizi)_ Deep structural / architectural execution.          |
 | **Functional Tests**   |  `Pending/TBD`  |     30     | _(Ameliyat)_ Instructor's live dynamic execution & exploit payload.     |
-| **Code Quality**       |  `90`  |     10     | Spaghetti functions, modularity, comment ratios, TODO fatigue.          |
-| **Commit Consistency** | `100` |     10     | Avoid single-commit dumps. Surgery shouldn't be a single cut.           |
-| **Documentation**      |  `100`  |     10     | Readme, architecture diagrams, installation instructions.               |
-| **Repo Discipline**    |  `65`  |     10     | Proper directory structure, `.gitignore`, CI/CD, dependency management. |
-| **Time Investment**    |  `30`  |     5      | Dedicated, spaced-out working sessions (concrete needs time to dry).    |
+| **Code Quality**       |  `85`  |     10     | Spaghetti functions, modularity, comment ratios, TODO fatigue.          |
+| **Commit Consistency** | `90` |     10     | Avoid single-commit dumps. Surgery shouldn't be a single cut.           |
+| **Documentation**      |  `95`  |     10     | Readme, architecture diagrams, installation instructions.               |
+| **Repo Discipline**    |  `80`  |     10     | Proper directory structure, `.gitignore`, CI/CD, dependency management. |
+| **Time Investment**    |  `40`  |     5      | Dedicated, spaced-out working sessions (concrete needs time to dry).    |
 
 ---
 
@@ -66,16 +66,25 @@ This section analyzes the actual architectural capabilities and identifies both 
 
 ### 🛡️ Secure Configurations & Strong Patterns
 
-
-
-- **[INFO]** `Basic simple structure (no advanced patterns detected)`
-  
+- **[INFO]** `Express.js monolithic IDOR lab with intentional Broken Access Control (CWE-639) for educational demonstration`
+- **[INFO]** `Python PoC exploit (exploit.py) properly implements ID enumeration with requests library, error handling, and throttle delay`
+- **[INFO]** `Comprehensive OWASP WSTG-aligned CHECKLIST.md covering Horizontal & Vertical Privilege Escalation, CRUD, and parameter manipulation`
+- **[INFO]** `MITIGATION.md includes secure code patch with session-ownership validation (req.session.userId check)`
+- **[INFO]** `THREAT_MODEL.md provides STRIDE-based risk assessment with correct Information Disclosure as Critical`
+- **[INFO]** `SECURITY.md establishes responsible disclosure protocol — professional open-source practice`
+- **[INFO]** `.env.example demonstrates environment variable hygiene; .gitignore properly excludes .env variants`
+- **[INFO]** `Well-structured src/ directory separation (server.js backend + index.html frontend)`
+- **[INFO]** `JSDoc annotations in server.js with @api, @apiDescription, CWE references, and inline TODO/FIXME`
 
 ### 🛑 Critical Warnings & Security Debt
 
-
-  
-  
+- **[WARNING]** `server.js is a single monolithic file (59 lines). No middleware extraction for logging, rate-limiting, or auth layers.`
+- **[WARNING]** `Hardcoded in-memory mock database with only 3 records. No real persistence or dynamic data generation.`
+- **[WARNING]** `No session management middleware (express-session not used). MITIGATION code references req.session but backend has no session setup.`
+- **[WARNING]** `exploit.py lacks argument parsing (argparse), output file export, or structured JSON reporting of exfiltrated data.`
+- **[WARNING]** `No unit tests or integration tests present. package.json test script is placeholder ("echo Error: no test specified").`
+- **[WARNING]** `index.html uses inline CSS and inline JavaScript — no module separation or CSP-compatible patterns.`
+- **[WARNING]** `TODO/FIXME annotations in server.js remain unresolved: helmet.js, Winston logging, Express-Rate-Limit, directory traversal protection.`
 
 ---
 
@@ -85,10 +94,10 @@ Healthy open-source engineering demands discipline, CI/CD, and properly formatte
 
 | Check                        |        Verdict        | Impact          |
 | :--------------------------- | :-------------------: | :-------------- |
-| `.gitignore` present?        |  `❌ No`  | +15 Repo Points |
+| `.gitignore` present?        |  `✅ Yes`  | +15 Repo Points |
 | CI/CD Pipelines Actions?     |    `❌ No`     | +25 Repo Points |
 | `Dockerfile` configured?     |   `❌ No`    | +20 Repo Points |
-| Package/Build Manager files? | `❌ No` | +20 Repo Points |
+| Package/Build Manager files? | `✅ Yes` | +20 Repo Points |
 
 ---
 
@@ -98,7 +107,7 @@ Healthy open-source engineering demands discipline, CI/CD, and properly formatte
 | :------------ | :--------------------------------------------- | :------------------------- |
 | **[BONUS]**   | Video Demonstration Provided (`❌ No`) | `+10 Points`               |
 | **[BONUS]**   | Manual Instructor Up-score Applied             | `+0 Points` |
-| **[PENALTY]** | `.env` or Hardcoded Secrets Tracked            | `-20 Repo Score`           |
+| **[PENALTY]** | `.env` or Hardcoded Secrets Tracked            | `-0 Points (Clean)`           |
 
 ---
 

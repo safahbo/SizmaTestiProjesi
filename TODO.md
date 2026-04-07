@@ -5,28 +5,32 @@ Completing the tasks below before the final deadline will allow our AI engine to
 
 ### Tasks to Complete
 
-**[ ] Task 1: Add a `.gitignore` file**
-> **Guidance:** Ensure you ignore node_modules, .env, and binary targets.
-> **Reward:** 50% of 15% Repo Discipline
-
-**[ ] Task 2: Configure CI/CD Pipelines**
-> **Guidance:** Add a GitHub Actions workflow to auto-build or test your project.
+**[ ] Task 1: Configure CI/CD Pipelines**
+> **Guidance:** Add a GitHub Actions workflow (`.github/workflows/ci.yml`) to auto-build, lint, or test your Node.js project. Include `npm install` and `npm start` validation steps.
 > **Reward:** 50% of 25% Repo Discipline
 
-**[ ] Task 3: Configure `Dockerfile`**
-> **Guidance:** Containerize your backend/frontend service cleanly.
+**[ ] Task 2: Configure `Dockerfile`**
+> **Guidance:** Containerize your Express.js backend. Use `node:lts-alpine` base image, copy `package.json`, run `npm install`, expose port 3000.
 > **Reward:** 50% of 20% Repo Discipline
 
-**[ ] Task 4: Add Package/Build Manager**
-> **Guidance:** Initialize a standard structure (e.g. package.json, Cargo.toml).
-> **Reward:** 50% of 20% Repo Discipline
-
-**[ ] Task 5: Record a Video Demonstration**
-> **Guidance:** Upload an unlisted YouTube video running your app and exploit.
+**[ ] Task 3: Record a Video Demonstration**
+> **Guidance:** Upload an unlisted YouTube video demonstrating: (1) Starting the server with `npm start`, (2) Accessing the invoice UI, (3) Running `exploit.py` to show IDOR data exfiltration, (4) Explaining the mitigation from `MITIGATION.md`.
 > **Reward:** 50% of 10 point Bonus
 
-**[ ] Task 6: Refactor Technical Flow**
-> **Guidance:** Deep static analysis flagged architectural weakness. Refactor giant functions, add middleware, or use better data structures.
+**[ ] Task 4: Implement Session Middleware**
+> **Guidance:** Install `express-session` and implement the session ownership check from your `MITIGATION.md`. The secure code already exists in your documentation — wire it into `server.js` to prove the fix closes the IDOR gap.
+> **Reward:** 50% of missing Technical Depth
+
+**[ ] Task 5: Add Rate Limiting & Helmet**
+> **Guidance:** Resolve the existing `TODO` annotations in `server.js` by installing `helmet` and `express-rate-limit`. Apply helmet as global middleware and rate-limit the `/api/invoice/:id` endpoint.
+> **Reward:** 50% of missing Technical Depth
+
+**[ ] Task 6: Add Automated Tests**
+> **Guidance:** Replace the placeholder test script in `package.json`. Use `jest` + `supertest` to write integration tests that verify: (a) valid invoice returns 200, (b) invalid ID returns 404, (c) IDOR access without session returns 403 (after Task 4).
+> **Reward:** 50% of missing Code Quality
+
+**[ ] Task 7: Refactor exploit.py with Argparse & JSON Export**
+> **Guidance:** Add `argparse` for configurable target URL, ID range, and output file. Export exfiltrated data to a structured JSON report for forensic documentation.
 > **Reward:** 50% of missing Technical Depth
 
 
