@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "IDOR Vulnerability Analysis Laboratory - Istinye University",
   "main": "src/server.js",
- "scripts": {
+  "scripts": {
     "start": "node src/server.js",
     "test": "jest"
-  },
   },
   "keywords": [
     "security",
